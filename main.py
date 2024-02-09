@@ -30,28 +30,23 @@ queue.enqueue(startordsnode)
 alphabet = ["a", "b", "c", "d", "e","f","g","h","i","j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v","w","x","y","z", "å","ä", "ö"]
 
 def skriv(node):
-    print(node.word)
-    print(node.parent)
-    while node.parent is not None:
+    if node.parent is not None:
         skriv(node.parent)
-
+    print(node.word)
 
 def makechildren(startordsnode, slutord, queue):
     gamla.put(startordsnode.word)
-    original = startordsnode
-
     for i in range(len(startordsnode.word)):
-        startord = list(original.word)
+        startord = list(startordsnode.word)
         for j in range(len(alphabet)):
             startord[i] = alphabet[j]
             ord1 = startord[0] + startord[1] + startord[2]
             if ord1 in svenska:
                 if ord1 not in gamla: 
-                    ordnod= ParentNode(ord1, startordsnode)
+                    ordnod = ParentNode(ord1, startordsnode)
                     queue.enqueue(ordnod)
                     gamla.put(ord1)
                     if ord1 == slutord:
-                        print(ord1)
                         ordnod.writechain()
                         raise SolutionFound
 
@@ -60,5 +55,6 @@ try:
     while not queue.isEmpty():
         nod = queue.dequeue()
         makechildren(nod, slutord, queue) 
-except:
     print("No solution found")
+except:
+    pass
