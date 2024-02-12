@@ -1,9 +1,17 @@
 def utskrift(lista):
+    """
+    Testar utskrift med print före rekursion
+    """
+
     if len(lista) > 0:
         print(lista[0])
         utskrift(lista[1:])
 
 def utskrift2(lista):
+    """
+    Testar utskrift med print efter rekursion
+    """
+     
     if len(lista) > 0:
         utskrift2(lista[1:])
         print(lista[0])
